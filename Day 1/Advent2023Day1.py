@@ -24,7 +24,7 @@ for calibration in calibrations:
     first_digit_scrape = re.search(r'\d', calibration)
     first_string_scrape = None
     first_string_position = None
-
+    print(calibration)
     for number in number_string_list:
        match =re.search(number, calibration)
        if match:
@@ -75,7 +75,9 @@ for calibration in calibrations:
 
     calibration= int(str(first_digit) + str(last_digit))
 
+    
     print(f'First Number: {first_digit}        Last Number: {last_digit}      Total Number:{calibration}')
+    print("")
     total_sum += calibration
 
 
