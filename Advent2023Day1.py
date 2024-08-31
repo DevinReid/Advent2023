@@ -26,12 +26,12 @@ for calibration in calibrations:
     first_string_position = None
 
     for number in number_string_list:
-       match =re.search(rf'\b{number}\b', calibration)
+       match =re.search(number, calibration)
        if match:
           first_string_scrape = number_string_list[number]
           first_string_position = match.start()
           break
-       
+    print(f'first Digit: {int(first_digit_scrape.group())}      First String: {first_string_scrape}')   
     first_digit = None
     if first_digit_scrape and (first_string_scrape is not None):
         if first_digit_scrape.start() < first_string_position:
@@ -53,15 +53,17 @@ for calibration in calibrations:
     last_digit = None
  
     for number in number_string_list:
-       match = list(re.finditer(rf'\b{number}\b', calibration))
+       match = list(re.finditer(number, calibration))
        if match:
           last_match = match[-1]
           last_string_scrape = number_string_list[number]
           last_string_position = last_match.start()
-
+    print(f'Last Digit: {int(last_digit_scrape[-1])}      Last String: {last_string_scrape}')
     if last_digit_scrape and (last_string_scrape is not None):
-        if last_digit_scrape.start() > last_string_position:
-          last_digit = int(last_digit_scrape.group())
+        
+        last_digit_position = len(calibration) - calibration[::-1].index(last_digit_scrape[-1]) - 1
+        if last_digit_position > last_string_position:
+          last_digit = int(last_digit_scrape[-1])
         else:
            last_digit = last_string_scrape
     elif last_digit_scrape:
@@ -72,8 +74,9 @@ for calibration in calibrations:
        print("ERROR NO SECOND DIGIT FOUND")
 
     calibration= int(str(first_digit) + str(last_digit))
+
     print(f'First Number: {first_digit}        Last Number: {last_digit}      Total Number:{calibration}')
     total_sum += calibration
-    
+
 
 print(f"The Sum of all of the numbers is {total_sum}")
