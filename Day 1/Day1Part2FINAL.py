@@ -3,7 +3,7 @@ import re
 # Define the input string
 # input_string = "9lzvbtlkzdgzcxrbtlthhqbdvklgkz7nine1"
 
-file_path = 'Advent2023Day1.txt'
+file_path = 'Day 1\Advent2023Day1.txt'
 
 
 
